@@ -1,5 +1,5 @@
-import bpy
-from pprint import pprint
+import nidity
 
 
+nidity.reset()
 print('hello_world')
