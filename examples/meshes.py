@@ -1,9 +1,9 @@
 import nidity
 
 
-nidity.reset()
 print('meshes example')
 
+nidity.reset()
 m = nidity.meshes.add_mesh('MyMesh')
 m.from_pydata(
     [
