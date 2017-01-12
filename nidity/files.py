@@ -16,3 +16,10 @@ def export_to_sandbox(filename):
         'EXEC_DEFAULT',
         filepath=os.path.join(sandbox_dirpath(), filename),
     )
+
+
+def import_from_sandbox(filename):
+    bpy.ops.wm.collada_import(
+        'EXEC_DEFAULT',
+        filepath=os.path.join(sandbox_dirpath(), filename),
+    )
