@@ -17,31 +17,24 @@ def sandbox_dirpath():
 
 def export_to_sandbox(filename_without_ext):
     path = sandbox_dirpath()
-    export_dae(path, filename_without_ext)
-    export_x3d(path, filename_without_ext)
     export_3ds(path, filename_without_ext)
+    export_dae(path, filename_without_ext)
     export_fbx(path, filename_without_ext)
-
-
-def export_dae(path, filename):
-    bpy.ops.wm.collada_export(
-        'EXEC_DEFAULT',
-        filepath=os.path.join(path, filename + '.dae'),
-    )
-
-
-def export_x3d(path, filename):
-    bpy.ops.export_scene.x3d(
-        'EXEC_DEFAULT',
-        filepath=os.path.join(path, filename + '.x3d'),
-        name_decorations=False,
-    )
+    export_x3d(path, filename_without_ext)
+    save_blend(path, filename_without_ext)
 
 
 def export_3ds(path, filename):
     bpy.ops.export_scene.autodesk_3ds(
         'EXEC_DEFAULT',
         filepath=os.path.join(path, filename + '.3ds'),
+    )
+
+
+def export_dae(path, filename):
+    bpy.ops.wm.collada_export(
+        'EXEC_DEFAULT',
+        filepath=os.path.join(path, filename + '.dae'),
     )
 
 
@@ -58,15 +51,31 @@ def export_fbx(path, filename):
     )
 
 
+def export_x3d(path, filename):
+    bpy.ops.export_scene.x3d(
+        'EXEC_DEFAULT',
+        filepath=os.path.join(path, filename + '.x3d'),
+        name_decorations=False,
+    )
+
+
+def save_blend(path, filename):
+    bpy.ops.wm.save_as_mainfile(
+        'EXEC_DEFAULT',
+        filepath=os.path.join(path, filename + '.blend'),
+    )
+
+
 ###############################################################################
 # import
 ###############################################################################
 
 IMPORTERS = {
-    '.dae': bpy.ops.wm.collada_import,
-    '.x3d': bpy.ops.import_scene.x3d,
     '.3ds': bpy.ops.import_scene.autodesk_3ds,
+    '.dae': bpy.ops.wm.collada_import,
     '.fbx': bpy.ops.import_scene.fbx,
+    '.x3d': bpy.ops.import_scene.x3d,
+    '.blend': bpy.ops.wm.open_mainfile,
 }
 
 
