@@ -1,5 +1,10 @@
+from pprint import pprint as pp
+
 import bpy
 from bpy.types import bpy_prop_collection
+
+
+assert(pp)
 
 
 def reset():
