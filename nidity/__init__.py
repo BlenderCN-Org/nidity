@@ -9,5 +9,6 @@ assert files
 assert meshes
 assert utils
 
-reset = utils.reset
+inspect = utils.inspect
 pp = utils.pp
+reset = utils.reset
